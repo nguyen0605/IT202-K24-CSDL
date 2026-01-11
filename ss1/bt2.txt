@@ -1,0 +1,60 @@
+1) Các thực thể (Entities)
+
+SinhVien (Student)
+
+MonHoc (Course/Subject)
+
+MucTieuHocTap (LearningGoal)
+
+Vì “một sinh viên có thể học nhiều môn học”, nên thường sẽ cần thêm thực thể trung gian để lưu quan hệ học (đăng ký học):
+
+DangKyHoc (Enrollment) 
+
+2) Thuộc tính cơ bản (Attributes)
+a) SinhVien
+
+MaSV (khóa chính)
+
+(có thể thêm nếu muốn quản lý cơ bản): HoTen, Lop, HocKy/NamHoc… (mô tả chưa bắt buộc)
+
+b) MonHoc
+
+MaMon (khóa chính)
+
+TenMon
+
+SoTinChi
+
+c) MucTieuHocTap
+
+MaMucTieu (khóa chính)
+
+NoiDungMucTieu (ví dụ: “đạt điểm cao”, “nắm vững kiến thức”…)
+
+MaMon (khóa ngoại → MonHoc)
+
+vì “mỗi mục tiêu chỉ thuộc về một môn học”
+
+d) DangKyHoc (nếu dùng)
+
+MaSV (khóa ngoại → SinhVien)
+
+MaMon (khóa ngoại → MonHoc)
+
+(tuỳ chọn): HocKy, NamHoc, TrangThai…
+
+3) Mối quan hệ giữa các thực thể (Relationships)
+
+SinhVien — học — MonHoc: N-N
+
+Một sinh viên học nhiều môn
+
+Một môn có thể được nhiều sinh viên học
+→ triển khai bằng bảng trung gian DangKyHoc (khuyến nghị trong CSDL quan hệ)
+
+MonHoc — có — MucTieuHocTap: 1-N
+
+Một môn có nhiều mục tiêu
+
+Một mục tiêu thuộc đúng 1 môn
+→ MucTieuHocTap.MaMon là khóa ngoại
