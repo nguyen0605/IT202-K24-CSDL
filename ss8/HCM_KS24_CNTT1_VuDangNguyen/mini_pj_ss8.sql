@@ -135,7 +135,7 @@ WHERE price_per_day > (SELECT AVG(price_per_day) FROM rooms);
 -- Những khách chưa từng đặt phòng
 SELECT guest_id, guest_name, phone
 FROM guests
-WHERE guest_id NOT IN (SELECT guest_id FROM bookings);
+WHERE guest_id NOT IN (SELECT guest_id FROM bookings WHERE guest_id IS NOT NULL);
 
 -- Tìm phòng được đặt nhiều lần nhất
 SELECT room_id
